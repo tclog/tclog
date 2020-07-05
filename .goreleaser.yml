@@ -1,0 +1,81 @@
+project_name: tclog
+
+release:
+  prerelease: auto
+
+before:
+  hooks:
+    - go mod tidy
+    - go mod download
+
+builds:
+  -
+    <<: &build_defaults
+      binary: bin/tclog
+    id: macos
+    goos: [darwin]
+    goarch: [amd64]
+  -
+    <<: *build_defaults
+    id: linux
+    goos: [linux]
+    goarch: [386, amd64, arm64]
+  -
+    <<: *build_defaults
+    id: windows
+    goos: [windows]
+    goarch: [386, amd64]
+
+archives:
+  -
+    id: nix
+    builds: [macos, linux]
+    <<: &replacements
+      replacements:
+        darwin: macOS
+        linux: Linux
+        windows: Windows
+        386: x86
+        amd64: x64
+    wrap_in_directory: true
+    format: tar.gz
+  -
+    id: windows
+    builds: [windows]
+    <<: *replacements
+    wrap_in_directory: false
+    format: zip
+
+nfpms:
+  - license: MIT
+    maintainer: tastyfriedtofu
+    homepage: https://github.com/tclog/tclog
+    bindir: /usr/local
+    dependencies:
+      - git
+    description: Twitch Chat Logger
+    formats:
+      - deb
+      - rpm
+
+scoop:
+  bucket:
+    owner: tclog
+    name: scoop-tclog
+  commit_author:
+    name: tastyfriedtofu
+    email: tastyfriedtofu@outlook.com
+  homepage: https://github.com/tclog/tclog
+  skip_upload: auto
+  description: Twitch Chat Logger
+  license: MIT
+
+checksum:
+  name_template: 'checksums.txt'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
