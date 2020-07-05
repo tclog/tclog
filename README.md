@@ -16,6 +16,8 @@ Join a channel as an anonymous user and log every messages to `./tclog_[channel]
 tclog [channel]
 ```
 
+The log use JSON for structured logging. 
+
 That's it, for now. I will add more functionality and configurations little by little.
 
 ## Documentations
