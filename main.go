@@ -111,13 +111,13 @@ func main() {
 	}
 }
 
-func logMessage(messageType string, message []byte)  {
+func logMessage(messageType string, message []byte) {
 	currentTime := time.Now()
 
 	logMsg := `{"Time":"` + currentTime.Local().String() + `","MessageType":"` + messageType + `","Message":` + string(message[:]) + `}`
 	fmt.Println(logMsg)
 
-	writeLog("tclog_" + os.Args[1] + "_" + currentTime.Format("2006-01-02") + ".log", logMsg)
+	writeLog("tclog_"+os.Args[1]+"_"+currentTime.Format("2006-01-02")+".log", logMsg)
 }
 
 func writeLog(fileName string, message string) {
