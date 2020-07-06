@@ -10,13 +10,13 @@ This project is maintained by [tastyfriedtofu](https://twitch.tv/tastyfriedtofu)
 
 ## Usage
 
-Join a channel as an anonymous user and log every messages to `./tclog_[channel]_[YYYYMMDD].log`.
+Join a channel as an anonymous user and log every messages to `./tclog_[channel]_[yyyy-mm-dd].log`.
 
 ```bash
 tclog [channel]
 ```
 
-The log use JSON for structured logging. 
+The log use JSON for structured logging.
 
 That's it, for now. I will add more functionality and configurations little by little.
 
@@ -92,7 +92,7 @@ I use [goreleaser](https://goreleaser.com/) to build this project on my local wo
 2. Build the project: `goreleaser --snapshot --skip-publish --rm-dist`
 3. Look for `./dist` directory for the built binaries
 4. Move the resulting binary executable to somewhere in your PATH
-5. Run `tclog version` to check if it worked. 
+5. Run `tclog` to check if it worked. 
 
 [releases page]: https://github.com/tclog/tclog/releases/latest
 
